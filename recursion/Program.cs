@@ -8,7 +8,7 @@ namespace recursion
     // Find the sum of array elements using recursion.
     // Find the sum of the digits of a number using recursion. (561 = 12)
     class Program
-    {static void Foo(ref int[] array, int index)
+    {   static void Foo(ref int[] array, int index)
         {
             Console.WriteLine(array[index]);
             index++;
