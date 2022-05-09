@@ -22,12 +22,12 @@ namespace recursion
             }
         }
 
-        static void ElementsSum(ref int[] array, int index = 0, int sum =0)
+        static void ElementsSum(int[] array, int index = 0, int sum =0)
         {
             if (index < array.Length)
             {
                 sum += array[index];
-                ElementsSum(ref array, index + 1, sum);
+                ElementsSum(array, index + 1, sum);
             }
             else
             {
@@ -38,10 +38,9 @@ namespace recursion
 
         static void NumbersSum(int userNumber, int result = 0)
         {
-            int semiresult = 0;
-            semiresult += userNumber % 10;
-            result += semiresult;
-            userNumber = (userNumber - semiresult) / 10;
+            
+            result += userNumber % 10;
+            userNumber /= 10;
 
             if (userNumber >= 1)
             {
@@ -49,8 +48,6 @@ namespace recursion
             }
             else
             {
-                userNumber %= 10;
-                result += userNumber;
                 Console.WriteLine(result);
                 Console.ReadKey();
             }
@@ -59,8 +56,8 @@ namespace recursion
         {
             int[] myArray = { 4, 3, 1, 5, 3, 2 };
             Foo(ref myArray);
-            ElementsSum(ref myArray);
-            NumbersSum(8543524);
+            ElementsSum(myArray);
+            NumbersSum(345);
         }
     }
 }
