@@ -8,11 +8,11 @@ namespace recursion
     // Find the sum of array elements using recursion.
     // Find the sum of the digits of a number using recursion. (561 = 12)
     class Program
-    {   static void Foo(ref int[] array, int index)
+    {   static void Foo(ref int[] array, int index = 0)
         {
             Console.WriteLine(array[index]);
             index++;
-            if (index <= (array.Length - 1))
+            if (index < array.Length)
             {
                 Foo(ref array, index);
             }
@@ -22,13 +22,12 @@ namespace recursion
             }
         }
 
-        static void ElementsSum(ref int[] array, int index, int sum)
+        static void ElementsSum(int[] array, int index = 0, int sum =0)
         {
-            if (index <= (array.Length - 1))
+            if (index < array.Length)
             {
                 sum += array[index];
-                index++;
-                ElementsSum(ref array, index, sum);
+                ElementsSum(array, index + 1, sum);
             }
             else
             {
@@ -37,12 +36,11 @@ namespace recursion
             }
         }
 
-        static void NumbersSum(int userNumber, int result)
+        static void NumbersSum(int userNumber, int result = 0)
         {
-            int semiresult = 0;
-            semiresult += userNumber % 10;
-            result += semiresult;
-            userNumber = (userNumber - semiresult) / 10;
+            
+            result += userNumber % 10;
+            userNumber /= 10;
 
             if (userNumber >= 1)
             {
@@ -50,8 +48,6 @@ namespace recursion
             }
             else
             {
-                userNumber %= 10;
-                result += userNumber;
                 Console.WriteLine(result);
                 Console.ReadKey();
             }
@@ -59,9 +55,9 @@ namespace recursion
         static void Main(string[] args)
         {
             int[] myArray = { 4, 3, 1, 5, 3, 2 };
-            Foo(ref myArray, 0);
-            ElementsSum(ref myArray, 0, 0);
-            NumbersSum(8543524, 0);
+            Foo(ref myArray);
+            ElementsSum(myArray);
+            NumbersSum(345);
         }
     }
 }
